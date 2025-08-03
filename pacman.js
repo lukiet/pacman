@@ -15,6 +15,11 @@ let blueGhostImage;
 let pinkGhostImage;
 let orangeGhostImage;
 let redGhostImage;
+let pacmanUpImage;
+let pacmanDownImage;
+let pacmanLeftImage;
+let pacmanRightImage;
+let wallImage;
 
 
 window.onload = function(){
