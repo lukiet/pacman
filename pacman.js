@@ -33,26 +33,26 @@ function loadImages() {
   wallImage.src = "images/wall.png";
 
   blueGhostImage = new Image();
-  blueGhostImage.src = "images/blue-ghost.png";
+  blueGhostImage.src = "images/blueGhost.png";
 
   pinkGhostImage = new Image();
-  pinkGhostImage.src = "images/pink-ghost.png";
+  pinkGhostImage.src = "images/pinkGhost.png";
 
   orangeGhostImage = new Image();
-  orangeGhostImage.src = "images/orange-ghost.png";
+  orangeGhostImage.src = "images/orangeGhost.png";
 
   redGhostImage = new Image();
-  redGhostImage.src = "images/red-ghost.png";
+  redGhostImage.src = "images/redGhost.png";
 
   pacmanUpImage = new Image();
-  pacmanUpImage.src = "images/pacman-up.png";
+  pacmanUpImage.src = "images/pacmanUp.png";
 
   pacmanDownImage = new Image();
-  pacmanDownImage.src = "images/pacman-down.png";
+  pacmanDownImage.src = "images/pacmanDown.png";
 
   pacmanLeftImage = new Image();
-  pacmanLeftImage.src = "images/pacman-left.png";
-  
+  pacmanLeftImage.src = "images/pacmanLeft.png";
+
   pacmanRightImage = new Image();
-  pacmanRightImage.src = "images/pacman-right.png";
+  pacmanRightImage.src = "images/pacmanRight.png";
 }
