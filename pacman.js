@@ -26,6 +26,10 @@ window.onload = function(){
     board = document.getElementById("board");
     board.height = boardHeight;
     board.width = boardWidth;
-    // context = board.getContext("2d"); used to draw on the canvas
+    context = board.getContext("2d"); // used to draw on the canvas
+}
 
+function loadImages() {
+     wallImage = new Image();
+     wallImage.src = "images/wall.png";
 }
