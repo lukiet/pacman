@@ -8,8 +8,14 @@ const columnCount = 19;
 const tileSize = 32;
 const boardWidth = columnCount * tileSize;
 const boardHeight = rowCount * tileSize;
-
 let context;
+
+// images
+let blueGhostImage;
+let pinkGhostImage;
+let orangeGhostImage;
+let redGhostImage;
+
 
 window.onload = function(){
     board = document.getElementById("board");
