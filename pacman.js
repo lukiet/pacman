@@ -10,3 +10,11 @@ const boardWidth = columnCount * tileSize;
 const boardHeight = rowCount * tileSize;
 
 let context;
+
+window.onload = function(){
+    board = document.getElementById("board");
+    board.height = boardHeight;
+    board.width = boardWidth;
+    // context = board.getContext("2d"); used to draw on the canvas
+
+}
