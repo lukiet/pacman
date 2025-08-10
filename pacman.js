@@ -55,7 +55,7 @@ const tileMap = [
     "X                 X",
     "XXXXXXXXXXXXXXXXXXX" 
 ];
-
+// upload
 
 
 function loadImages() {
