@@ -103,9 +103,32 @@ function loadMap() {
       const x = c * tileSize;
       const y = r * tileSize;
 
-      if (tileMapChar === "X") {
+      if (tileMapChar == "X") {
         const wall = new Block(wallImage, x, y, tileSize, tileSize);
         walls.add(wall);
+      }
+      else if (tileMapChar == "b") {
+        const ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
+        ghosts.add(ghost);
+      }
+      else if (tileMapChar == "o") {
+        const ghost = new Block(orangeGhostImage, x, y, tileSize, tileSize);
+        ghosts.add(ghost);
+      }
+      else if (tileMapChar == "p") {
+        const ghost = new Block(pinkGhostImage, x, y, tileSize, tileSize);
+        ghosts.add(ghost);
+      }
+      else if (tileMapChar == "r") {
+        const ghost = new Block(redGhostImage, x, y, tileSize, tileSize);
+        ghosts.add(ghost);
+      }
+      else if (tileMapChar == "P") {
+        pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
+      }
+      else if (tileMapChar == " ") {
+        const food = new Block(null, x + tileSize / 3, y + tileSize / 3, tileSize / 3, tileSize / 3);
+        food.add(food);
       }
     }
   }
