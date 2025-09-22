@@ -33,6 +33,7 @@ window.onload = function () {
   console.log(food.size);
   console.log(ghosts.size);
   console.log(pacman);
+  update();
 };
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -138,6 +139,8 @@ function loadMap() {
     }
   }
 }
+
+
 class Block {
   constructor(image, x, y, width, height) {
     this.image = image;
