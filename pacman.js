@@ -133,7 +133,7 @@ function loadMap() {
         pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
       }
       else if (tileMapChar == " ") {
-        const foodItem = new Block(null, x + tileSize / 3, y + tileSize / 3, tileSize / 3, tileSize / 3);
+        const foodItem = new Block(null, x + tileSize / 3, y + tileSize / 3, 4, 4);
         food.add(foodItem);
       }
     }
@@ -151,6 +151,13 @@ function draw() {
   for (let ghost of ghosts.values()) {
     context.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height);
   }
+  for (let wall of walls.values()) {
+    context.drawImage(wall.image, wall.x, wall.y, wall.width, wall.height);
+  }
+  for (let foodItem of food.values()) {
+    context.fillStyle = "white";
+    context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
+  }
 }
 class Block {
   constructor(image, x, y, width, height) {
@@ -162,5 +169,9 @@ class Block {
 
     this.startX = x;
     this.startY = y;
+
+    this.direction = "R";
+    this.velocityX = 0;
+    this.velocityY = 0;
   }
 }
