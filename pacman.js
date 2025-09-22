@@ -174,4 +174,33 @@ class Block {
     this.velocityX = 0;
     this.velocityY = 0;
   }
+
+  updateDirection(direction){
+    this.direction = direction;
+    this.updateVelocity();
+  }
+
+  updateVelocity(){
+    if (this.direction == "U"){
+      this.velocityX = 0;
+      this.velocityY = -tileSize/4;
+    }
+    else if (this.direction == "D"){
+      this.velocityX = 0;
+      this.velocityY = tileSize/4;
+    }
+    else if (this.direction == "L"){
+      this.velocityX = -tileSize/4;
+      this.velocityY = 0;
+    }
+    else if (this.direction == "R"){
+      this.velocityX = tileSize/4;
+      this.velocityY = 0;
+    }
+    else {
+      this.velocityX = 0;
+      this.velocityY = 0;
+    }
+  }
+
 }
