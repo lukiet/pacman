@@ -55,8 +55,11 @@ const tileMap = [
     "X                 X",
     "XXXXXXXXXXXXXXXXXXX" 
 ];
-// upload
 
+const walls = new Set();
+const food = new Set();
+const ghosts = new Set();
+let pacman;
 
 function loadImages() {
   wallImage = new Image();
@@ -85,4 +88,17 @@ function loadImages() {
 
   pacmanRightImage = new Image();
   pacmanRightImage.src = "images/pacmanRight.png";
+}
+
+class Block {
+  constructor(image,x, y, width, height){
+    this.image = image;
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+
+    this.startX = x;
+    this.startY = y;
+  }
 }
