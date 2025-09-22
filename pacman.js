@@ -28,6 +28,11 @@ window.onload = function () {
   context = board.getContext("2d"); // used to draw on the canvas
 
   loadImages();
+  loadMap();
+  console.log(walls.size);
+  console.log(food.size);
+  console.log(ghosts.size);
+  console.log(pacman);
 };
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -96,7 +101,7 @@ function loadMap() {
   ghosts.clear();
 
   for (let r = 0; r < rowCount; r++) {
-    for (let c = 0; column < columnCount; c++) {
+    for (let c = 0; c < columnCount; c++) {
       const row = tileMap[r];
       const tileMapChar = row[c];
 
@@ -127,8 +132,8 @@ function loadMap() {
         pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
       }
       else if (tileMapChar == " ") {
-        const food = new Block(null, x + tileSize / 3, y + tileSize / 3, tileSize / 3, tileSize / 3);
-        food.add(food);
+        const foodItem = new Block(null, x + tileSize / 3, y + tileSize / 3, tileSize / 3, tileSize / 3);
+        food.add(foodItem);
       }
     }
   }
