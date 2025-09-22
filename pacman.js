@@ -34,6 +34,7 @@ window.onload = function () {
   console.log(ghosts.size);
   console.log(pacman);
   update();
+  document.addEventListener('keyup', movePacman)
 };
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -159,6 +160,11 @@ function draw() {
     context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
   }
 }
+
+function movePacman(){
+  
+}
+
 class Block {
   constructor(image, x, y, width, height) {
     this.image = image;
