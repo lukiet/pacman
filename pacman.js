@@ -140,7 +140,9 @@ function loadMap() {
   }
 }
 
-
+function update(){
+  draw();
+}
 class Block {
   constructor(image, x, y, width, height) {
     this.image = image;
