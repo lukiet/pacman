@@ -33,27 +33,27 @@ window.onload = function () {
 //X = wall, O = skip, P = pac man, ' ' = food
 //Ghosts: b = blue, o = orange, p = pink, r = red
 const tileMap = [
-    "XXXXXXXXXXXXXXXXXXX",
-    "X        X        X",
-    "X XX XXX X XXX XX X",
-    "X                 X",
-    "X XX X XXXXX X XX X",
-    "X    X       X    X",
-    "XXXX XXXX XXXX XXXX",
-    "OOOX X       X XOOO",
-    "XXXX X XXrXX X XXXX",
-    "O       bpo       O",
-    "XXXX X XXXXX X XXXX",
-    "OOOX X       X XOOO",
-    "XXXX X XXXXX X XXXX",
-    "X        X        X",
-    "X XX XXX X XXX XX X",
-    "X  X     P     X  X",
-    "XX X X XXXXX X X XX",
-    "X    X   X   X    X",
-    "X XXXXXX X XXXXXX X",
-    "X                 X",
-    "XXXXXXXXXXXXXXXXXXX" 
+  "XXXXXXXXXXXXXXXXXXX",
+  "X        X        X",
+  "X XX XXX X XXX XX X",
+  "X                 X",
+  "X XX X XXXXX X XX X",
+  "X    X       X    X",
+  "XXXX XXXX XXXX XXXX",
+  "OOOX X       X XOOO",
+  "XXXX X XXrXX X XXXX",
+  "O       bpo       O",
+  "XXXX X XXXXX X XXXX",
+  "OOOX X       X XOOO",
+  "XXXX X XXXXX X XXXX",
+  "X        X        X",
+  "X XX XXX X XXX XX X",
+  "X  X     P     X  X",
+  "XX X X XXXXX X X XX",
+  "X    X   X   X    X",
+  "X XXXXXX X XXXXXX X",
+  "X                 X",
+  "XXXXXXXXXXXXXXXXXXX",
 ];
 
 const walls = new Set();
@@ -90,8 +90,28 @@ function loadImages() {
   pacmanRightImage.src = "images/pacmanRight.png";
 }
 
+function loadMap() {
+  walls.clear();
+  food.clear();
+  ghosts.clear();
+
+  for (let r = 0; r < rowCount; r++) {
+    for (let c = 0; column < columnCount; c++) {
+      const row = tileMap[r];
+      const tileMapChar = row[c];
+
+      const x = c * tileSize;
+      const y = r * tileSize;
+
+      if (tileMapChar === "X") {
+        const wall = new Block(wallImage, x, y, tileSize, tileSize);
+        walls.add(wall);
+      }
+    }
+  }
+}
 class Block {
-  constructor(image,x, y, width, height){
+  constructor(image, x, y, width, height) {
     this.image = image;
     this.x = x;
     this.y = y;
