@@ -161,8 +161,21 @@ function draw() {
   }
 }
 
-function movePacman(){
-  
+
+
+function movePacman(e){
+  if (e.code == "ArrowUp" || e.code == "KeyW"){
+    pacman.updateDirection("U");
+}
+  else if (e.code == "ArrowDown" || e.code == "KeyS"){
+    pacman.updateDirection("D");
+}
+  else if (e.code == "ArrowLeft" || e.code == "KeyA"){
+    pacman.updateDirection("L");
+}
+  else if (e.code == "ArrowRight" || e.code == "KeyD"){
+    pacman.updateDirection("R");
+}
 }
 
 class Block {
