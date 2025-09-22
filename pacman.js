@@ -141,11 +141,16 @@ function loadMap() {
 }
 
 function update(){
+  //move
   draw();
+  setTimeout(update, 50)
 }
 
 function draw() {
-  
+  context.drawImage(pacman.image, pacman.x, pacman.y, pacman.width, pacman.height);
+  for (let ghost of ghosts.values()) {
+    context.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height);
+  }
 }
 class Block {
   constructor(image, x, y, width, height) {
