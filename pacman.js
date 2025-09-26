@@ -165,6 +165,15 @@ function draw() {
 function move (){
   pacman.x += pacman.velocityX;
   pacman.y += pacman.velocityY;
+
+  // check for wall collision
+  for (let wall of walls.values()){
+    if (collision(pacman, wall)){
+      pacman.x -= pacman.velocityX;
+      pacman.y -= pacman.velocityY;
+      break;
+    }
+  }
 }
 
 function movePacman(e){
@@ -206,8 +215,22 @@ class Block {
   }
 
   updateDirection(direction){
+    const prevDirection = this.direction;
     this.direction = direction;
     this.updateVelocity();
+    this.x += this.velocityX;
+    this.y += this.velocityY;
+
+    // check for wall collision
+    for (let wall of walls.values()){
+      if (collision(this, wall)){
+        this.x -= this.velocityX;
+        this.y -= this.velocityY;
+        this.direction = prevDirection;
+        this.updateVelocity();
+        return;
+      }
+    }
   }
 
   updateVelocity(){
