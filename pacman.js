@@ -271,6 +271,17 @@ function collision (a, b){
          a.y < b.y + b.height &&
          a.y + a.height > b.y;
 }
+
+function resetPositions(){
+  pacman.reset();
+  pacman.velocityX = 0;
+  pacman.velocityY = 0;
+  for (let ghost of ghosts.values()){
+    ghost.reset();
+    const newDirection = directions[Math.floor(Math.random() * 4)];
+    ghost.updateDirection(newDirection);
+  }
+}
 class Block {
   constructor(image, x, y, width, height) {
     this.image = image;
@@ -329,4 +340,10 @@ class Block {
     }
   }
 
+  reset(){
+    this.x = this.startX;
+    this.y = this.startY;
+    this.direction = "R";
+    this.updateVelocity();
+  }
 }
