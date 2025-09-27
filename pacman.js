@@ -53,6 +53,9 @@ const ghosts = new Set();
 let pacman;
 
 const directions = ["U", "D", "L", "R"];
+let score = 0;
+let lives = 3;
+let gameOver = false;
 
 window.onload = function () {
   board = document.getElementById("board");
@@ -167,6 +170,18 @@ function draw() {
     context.fillStyle = "white";
     context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
   }
+
+  //store
+  context.fillStyle = "white";
+    context.font = "14px sans-serif";
+    if (!gameOver){
+      context.fillText("Score: " + score, 10, boardHeight - 10);
+      context.fillText("Lives: " + lives, boardWidth - 70, boardHeight - 10);
+    }
+    else {
+      context.fillText("Game Over! Final Score: " + score, boardWidth/2 - 80, boardHeight/2);
+    }
+
 }
 
 function move (){
@@ -184,6 +199,11 @@ function move (){
 
   for (let ghost of ghosts.values()){
 
+    if(collision(pacman, ghost)){
+      lives -= 1;
+      resetPositions();
+    }
+
     if (ghost.y == tileSize*9 && ghost.direction != 'U' && ghost.direction != 'D'){
       ghost.updateDirection("U");
     }
@@ -195,11 +215,21 @@ function move (){
         ghost.x -= ghost.velocityX;
         ghost.y -= ghost.velocityY;
         const newDirection = directions[Math.floor(Math.random() * 4)];
-        ghost.updateDirection(newDirection);
-        break;
+        ghost.updateDirection(newDirection);       
       }
     }
   }
+
+  // check for food collision
+  let foodEaten = null;
+  for (let foodItem of food.values()){
+    if (collision(pacman, foodItem)){
+      foodEaten = foodItem;
+      score += 10;
+      break;
+    }
+  }
+  food.delete(foodEaten);
 
 }
 
