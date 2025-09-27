@@ -21,22 +21,6 @@ let pacmanLeftImage;
 let pacmanRightImage;
 let wallImage;
 
-window.onload = function () {
-  board = document.getElementById("board");
-  board.height = boardHeight;
-  board.width = boardWidth;
-  context = board.getContext("2d"); // used to draw on the canvas
-
-  loadImages();
-  loadMap();
-  console.log(walls.size);
-  console.log(food.size);
-  console.log(ghosts.size);
-  console.log(pacman);
-  update();
-  document.addEventListener('keyup', movePacman)
-};
-
 //X = wall, O = skip, P = pac man, ' ' = food
 //Ghosts: b = blue, o = orange, p = pink, r = red
 const tileMap = [
@@ -67,6 +51,29 @@ const walls = new Set();
 const food = new Set();
 const ghosts = new Set();
 let pacman;
+
+const directions = ["U", "D", "L", "R"];
+
+window.onload = function () {
+  board = document.getElementById("board");
+  board.height = boardHeight;
+  board.width = boardWidth;
+  context = board.getContext("2d"); // used to draw on the canvas
+
+  loadImages();
+  loadMap();
+  // console.log(walls.size);
+  // console.log(food.size);
+  // console.log(ghosts.size);
+  // console.log(pacman);
+  for (let ghost of ghosts.values()){
+     const newDirection = directions[Math.floor(Math.random() * 4)];
+      ghost.updateDirection(newDirection);
+  }
+  update();
+  document.addEventListener('keyup', movePacman)
+};
+
 
 function loadImages() {
   wallImage = new Image();
@@ -174,6 +181,21 @@ function move (){
       break;
     }
   }
+
+  for (let ghost of ghosts.values()){
+    ghost.x += ghost.velocityX;
+    ghost.y += ghost.velocityY;
+    for (let wall of walls.values()){
+      if (collision(ghost, wall)|| ghost.x <= 0 || ghost.x + ghost.width >= boardWidth || ghost.y <= 0 || ghost.y + ghost.height >= boardHeight){
+        ghost.x -= ghost.velocityX;
+        ghost.y -= ghost.velocityY;
+        const newDirection = directions[Math.floor(Math.random() * 4)];
+        ghost.updateDirection(newDirection);
+        break;
+      }
+    }
+  }
+
 }
 
 function movePacman(e){
