@@ -152,6 +152,9 @@ function loadMap() {
 }
 
 function update(){
+  if (gameOver){
+    return;
+  }
   move();
   draw();
   setTimeout(update, 50)
@@ -201,6 +204,10 @@ function move (){
 
     if(collision(pacman, ghost)){
       lives -= 1;
+      if (lives == 0){
+        gameOver = true;
+        return;
+      }
       resetPositions();
     }
 
