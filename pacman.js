@@ -238,9 +238,24 @@ function move (){
   }
   food.delete(foodEaten);
 
+  //next level
+  if (food.size == 0){
+    loadMap();
+    resetPositions();
+  }
+
 }
 
 function movePacman(e){
+  if (gameOver){
+    loadMap();
+    resetPositions();
+    score = 0;
+    lives = 3;
+    gameOver = false;
+    update();
+    return;
+  }
   if (e.code == "ArrowUp" || e.code == "KeyW"){
     pacman.updateDirection("U");
 }
