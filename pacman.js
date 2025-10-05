@@ -311,7 +311,7 @@ function draw() {
     context.strokeRect(wall.x, wall.y, wall.width, wall.height);
   }
   for (let foodItem of food.values()) {
-    context.fillStyle = "white";
+    context.fillStyle = "yellow";
     context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
   }
 
