@@ -14,6 +14,9 @@ body {
     padding: 10px;
     overflow-x: hidden;
 }
+h1{
+    padding: 15px;
+}
 
 .game-container {
     display: flex;
