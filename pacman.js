@@ -33,7 +33,7 @@ const tileMap = [
   "XXXX XXXX XXXX XXXX",
   "OOOX X       X XOOO",
   "XXXX X XXrXX X XXXX",
-  "O       bpo       O",
+  "X       bpo       X",
   "XXXX X XXXXX X XXXX",
   "OOOX X       X XOOO",
   "XXXX X XXXXX X XXXX",
@@ -393,13 +393,13 @@ function movePacman(e){
   if (e.code == "ArrowUp" || e.code == "KeyW"){
     pacman.updateDirection("U");
 }
-  else if (e.code == "ArrowDown" || e.code == "KeyS"){
+  else if (e.code == "ArrowDown" || e.code == "KeyZ"){
     pacman.updateDirection("D");
 }
   else if (e.code == "ArrowLeft" || e.code == "KeyA"){
     pacman.updateDirection("L");
 }
-  else if (e.code == "ArrowRight" || e.code == "KeyD"){
+  else if (e.code == "ArrowRight" || e.code == "KeyS"){
     pacman.updateDirection("R");
 }
 
