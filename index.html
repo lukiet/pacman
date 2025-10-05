@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="pacman.css">
+    <script src="pacman.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="board"></canvas>
+        
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <div class="controls-row">
+                <button id="upBtn" class="control-btn up-btn">↑</button>
+            </div>
+            <div class="controls-row">
+                <button id="leftBtn" class="control-btn left-btn">←</button>
+                <div class="center-space"></div>
+                <button id="rightBtn" class="control-btn right-btn">→</button>
+            </div>
+            <div class="controls-row">
+                <button id="downBtn" class="control-btn down-btn">↓</button>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+            <p class="desktop-only">Use arrow keys or WASD to move</p>
+            <p class="mobile-only">Tap the buttons to move</p>
+            <p>Collect all dots and avoid ghosts!</p>
+        </div>
+    </div>
+</body>
+</html>

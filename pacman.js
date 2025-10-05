@@ -63,6 +63,10 @@ window.onload = function () {
   board.width = boardWidth;
   context = board.getContext("2d"); // used to draw on the canvas
 
+  // Make canvas responsive
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
   loadImages();
   loadMap();
   // console.log(walls.size);
@@ -73,9 +77,139 @@ window.onload = function () {
      const newDirection = directions[Math.floor(Math.random() * 4)];
       ghost.updateDirection(newDirection);
   }
+  
+  // Add touch controls
+  setupTouchControls();
+  
   update();
   document.addEventListener('keyup', movePacman)
 };
+
+function resizeCanvas() {
+  const canvas = document.getElementById('board');
+  const container = document.querySelector('.game-container');
+  
+  // Get the maximum available space
+  const maxWidth = Math.min(window.innerWidth * 0.95, boardWidth);
+  const maxHeight = Math.min(window.innerHeight * 0.6, boardHeight);
+  
+  // Calculate scale to maintain aspect ratio
+  const scaleX = maxWidth / boardWidth;
+  const scaleY = maxHeight / boardHeight;
+  const scale = Math.min(scaleX, scaleY);
+  
+  // Apply scaling with CSS
+  canvas.style.width = (boardWidth * scale) + 'px';
+  canvas.style.height = (boardHeight * scale) + 'px';
+  
+  // Keep internal resolution the same for crisp graphics
+  canvas.width = boardWidth;
+  canvas.height = boardHeight;
+}
+
+function setupTouchControls() {
+  // Force show mobile controls on touch devices
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if (isMobile) {
+    const mobileControls = document.querySelector('.mobile-controls');
+    if (mobileControls) {
+      mobileControls.style.display = 'block';
+    }
+  }
+
+  const upBtn = document.getElementById('upBtn');
+  const downBtn = document.getElementById('downBtn');
+  const leftBtn = document.getElementById('leftBtn');
+  const rightBtn = document.getElementById('rightBtn');
+
+  console.log('Setting up touch controls...'); // Debug log
+  console.log('Buttons found:', {upBtn, downBtn, leftBtn, rightBtn}); // Debug log
+
+  // Function to handle button press
+  const handleButtonPress = (direction) => {
+    console.log('Button pressed:', direction); // Debug log
+    handleMobileInput(direction);
+  };
+
+  // Add event listeners for each button
+  if (upBtn) {
+    upBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleButtonPress('U');
+    });
+    upBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleButtonPress('U');
+    });
+  }
+  
+  if (downBtn) {
+    downBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleButtonPress('D');
+    });
+    downBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleButtonPress('D');
+    });
+  }
+  
+  if (leftBtn) {
+    leftBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleButtonPress('L');
+    });
+    leftBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleButtonPress('L');
+    });
+  }
+  
+  if (rightBtn) {
+    rightBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleButtonPress('R');
+    });
+    rightBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleButtonPress('R');
+    });
+  }
+}
+
+function handleMobileInput(direction) {
+  console.log('handleMobileInput called with direction:', direction); // Debug log
+  console.log('gameOver:', gameOver); // Debug log
+  
+  if (gameOver) {
+    loadMap();
+    resetPositions();
+    score = 0;
+    lives = 3;
+    gameOver = false;
+    update();
+    console.log('Game restarted'); // Debug log
+    return;
+  }
+
+  if (pacman) {
+    pacman.updateDirection(direction);
+    console.log('Pacman direction updated to:', direction); // Debug log
+    
+    // Update pacman image based on direction
+    if (direction == "U") {
+      pacman.image = pacmanUpImage;
+    } else if (direction == "D") {
+      pacman.image = pacmanDownImage;
+    } else if (direction == "L") {
+      pacman.image = pacmanLeftImage;
+    } else if (direction == "R") {
+      pacman.image = pacmanRightImage;
+    }
+  } else {
+    console.log('Pacman object not found'); // Debug log
+  }
+}
 
 
 function loadImages() {

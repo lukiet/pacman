@@ -1,8 +1,203 @@
-body{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
     text-align: center;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 100vw;
 }
 
 #board {
     background-color: black;
+    border: 2px solid #333;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+    display: none;
+    margin: 20px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.controls-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #FFD700;
+    background-color: #333;
+    color: #FFD700;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0 5px;
+    transition: all 0.1s ease;
+    touch-action: manipulation;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    line-height: 56px;
+}
+
+.control-btn:active,
+.control-btn:focus {
+    background-color: #FFD700;
+    color: #333;
+    transform: scale(0.95);
+    outline: none;
+}
+
+.control-btn:hover {
+    background-color: #555;
+}
+
+.center-space {
+    width: 60px;
+    height: 60px;
+}
+
+/* Instructions */
+.instructions {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.instructions p {
+    margin: 5px 0;
+}
+
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    
+    .game-container {
+        min-height: 100vh;
+        justify-content: flex-start;
+        padding-top: 10px;
+    }
+    
+    #board {
+        max-width: 95vw;
+        max-height: 60vh;
+        width: auto;
+        height: auto;
+    }
+    
+    .mobile-controls {
+        display: block !important;
+        margin: 15px 0;
+    }
+    
+    .control-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        line-height: 46px;
+    }
+    
+    .center-space {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+    
+    .instructions {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #board {
+        max-width: 98vw;
+        max-height: 50vh;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        margin: 0 3px;
+    }
+    
+    .center-space {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .game-container {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    #board {
+        max-height: 80vh;
+        max-width: 60vw;
+    }
+    
+    .mobile-controls {
+        margin: 0 20px;
+    }
+    
+    .instructions {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+    }
 }
 
