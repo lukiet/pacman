@@ -308,17 +308,17 @@ function draw() {
     context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
   }
 
-  //store
+  //score and lives display
   context.fillStyle = "white";
-    context.font = "14px sans-serif";
-    if (!gameOver){
-      context.fillText("Score: " + score, 10, boardHeight - 10);
-      context.fillText("Lives: " + lives, boardWidth - 70, boardHeight - 10);
-    }
-    else {
-      context.fillText("Game Over! Final Score: " + score, boardWidth/2 - 80, boardHeight/2);
-    }
-
+  context.font = "24px sans-serif"; // Increased from 14px to 24px
+  if (!gameOver){
+    context.fillText("Score: " + score, 10, boardHeight - 10);
+    context.fillText("Lives: " + lives, boardWidth - 100, boardHeight - 10); // Adjusted position for larger text
+  }
+  else {
+    context.font = "28px sans-serif"; // Even larger for game over text
+    context.fillText("Game Over! Final Score: " + score, boardWidth/2 - 120, boardHeight/2); // Adjusted centering
+  }
 }
 
 function move (){
