@@ -311,11 +311,11 @@ function draw() {
     context.strokeRect(wall.x, wall.y, wall.width, wall.height);
   }
   for (let foodItem of food.values()) {
-    context.fillStyle = "yellow";
-    context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
+    context.fillStyle = "white";
+    context.fillRect(foodItem.x, foodItem.y, foodItem.width*0.8, foodItem.height*0.8);
   }
 
-  //store
+  //store score and lives
   context.fillStyle = "white";
     context.font = "24px bold sans-serif";
     if (!gameOver){
