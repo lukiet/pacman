@@ -214,7 +214,7 @@ function handleMobileInput(direction) {
 
 function loadImages() {
   wallImage = new Image();
-  wallImage.src = "images/wall.png";
+  wallImage.src = "images/wall2.png";
 
   blueGhostImage = new Image();
   blueGhostImage.src = "images/blueGhost.png";
@@ -301,24 +301,32 @@ function draw() {
     context.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height);
   }
   for (let wall of walls.values()) {
-    context.drawImage(wall.image, wall.x, wall.y, wall.width, wall.height);
+    // Draw brown walls instead of using images
+    context.fillStyle = "#8B4513"; // Saddle brown color
+    context.fillRect(wall.x, wall.y, wall.width, wall.height);
+    
+    // Add a subtle border for definition
+    context.strokeStyle = "#A0522D"; // Sienna brown for border
+    context.lineWidth = 1;
+    context.strokeRect(wall.x, wall.y, wall.width, wall.height);
   }
   for (let foodItem of food.values()) {
     context.fillStyle = "white";
     context.fillRect(foodItem.x, foodItem.y, foodItem.width, foodItem.height);
   }
 
-  //score and lives display
+  //store
   context.fillStyle = "white";
-  context.font = "24px sans-serif"; // Increased from 14px to 24px
-  if (!gameOver){
-    context.fillText("Score: " + score, 10, boardHeight - 10);
-    context.fillText("Lives: " + lives, boardWidth - 100, boardHeight - 10); // Adjusted position for larger text
-  }
-  else {
-    context.font = "28px sans-serif"; // Even larger for game over text
-    context.fillText("Game Over! Final Score: " + score, boardWidth/2 - 120, boardHeight/2); // Adjusted centering
-  }
+    context.font = "24px bold sans-serif";
+    if (!gameOver){
+      context.fillText("Score: " + score, 10, boardHeight - 15);
+      context.fillText("Lives: " + lives, boardWidth - 100, boardHeight - 15);
+    }
+    else {
+      context.font = "28px bold sans-serif";
+      context.fillText("Game Over! Final Score: " + score, boardWidth/2 - 140, boardHeight/2);
+    }
+
 }
 
 function move (){
