@@ -100,7 +100,7 @@ h1:hover {
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
     margin: 0 8px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     touch-action: manipulation;
     outline: none;
     display: inline-block;
